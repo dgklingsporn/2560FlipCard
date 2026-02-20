@@ -5,9 +5,19 @@
 #include <vector>
 #include <algorithm>
 #include <random>
-
+#include "Card.h" // we need the seperate card header file class
 
 using namespace std;
+
+template <typename T>
+struct node {
+    T nodeValue;
+    node<T>* next;
+    node(T val, node<T>* n = nullptr) : nodeValue(val), next(n) {}
+};
+
+
+
 
 class deck
 {
@@ -27,6 +37,35 @@ public:
 private:
     node<card>* firstCard = nullptr;
 };
+// ----------------------------------------------
+// This creates 52 cards in order: Ace-King, then Club-Diamond-Heart-Spade
+deck::deck()
+{
+    firstCard = nullptr;
+    node<card>* tail = nullptr;
+
+    // Outer loop: Suits (1: Club, 2: Diamond, 3: Heart, 4: Spade)
+    for (int s = 1; s <= 4; s++)
+    {
+        // Inner loop: Values (1: Ace ... 13: King)
+        for (int v = 1; v <= 13; v++)
+        {
+            card newCard(v, s); // Assumes Member 1's constructor is Card(value, suit)
+            node<card>* newNode = new node<card>(newCard);
+
+            if (firstCard == nullptr)
+            {
+                firstCard = newNode;
+                tail = firstCard;
+            }
+            else
+            {
+                tail->next = newNode;
+                tail = newNode;
+            }
+        }
+    }
+}
 
 // ----------------------------------------------
 // clear decks previous memory
@@ -102,7 +141,7 @@ void deck::shuffle()
     // random shuffle
     random_device rd;
     mt19937 gen(rd());
-    shuffle(temp.begin(), temp.end(), gen);
+    std::shuffle(temp.begin(), temp.end(), gen);
 
     // delete old list
     clear();
