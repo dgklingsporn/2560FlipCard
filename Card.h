@@ -19,7 +19,7 @@ class card{
          suit = *(ptr + suit_in);
 
     }
-   string getSuit(){
+   string getSuit() const{
     return suit;
    }
    void setValue( int value_in){
@@ -28,7 +28,7 @@ class card{
     value = *(ptr + (value_in - 2));
    }
 
-   string getValue(){
+   string getValue() const{
     return value;
    }
    friend ostream& operator<<(ostream& os, card c) {
@@ -38,5 +38,6 @@ class card{
 };
 
 #endif
+
 
 
