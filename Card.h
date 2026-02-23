@@ -32,9 +32,10 @@ class card{
     return value;
    }
    friend ostream& operator<<(ostream& os, const card& c) {
-        os << "Value: " << c.value << " Suit: " << c.suit << endl;
+        os << "Value: " << c.getValue << " Suit: " << c.getSuit << endl;
         return os;
    }
 };
 
 #endif
+
