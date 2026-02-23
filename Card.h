@@ -32,12 +32,16 @@ class card{
     return value;
    }
    friend ostream& operator<<(ostream& os, card c) {
-        os << "Value: " << c.getValue() << " Suit: " << c.getSuit() << endl;
+        os << "Value: " << c.getValue();
+        for (size_t i = (c.getValue()).length(); i < 7; i++)
+            os << ' ';
+        os << " Suit: " << c.getSuit() << endl;
         return os;
    }
 };
 
 #endif
+
 
 
 
