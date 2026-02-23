@@ -181,7 +181,7 @@ ostream& operator<<(ostream& ostr, const deck& d)
         ostr << curr->nodeValue;
 
         if (curr->next != nullptr)
-            ostr << ", ";
+            ostr << "";
 
         if (count % 13 == 0)
             ostr << "\n";
