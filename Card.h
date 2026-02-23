@@ -31,11 +31,12 @@ class card{
    string getValue(){
     return value;
    }
-   friend ostream& operator<<(ostream& os, const card& c) {
-        os << "Value: " << c.getValue << " Suit: " << c.getSuit << endl;
+   friend ostream& operator<<(ostream& os, card c) {
+        os << "Value: " << c.getValue() << " Suit: " << c.getSuit() << endl;
         return os;
    }
 };
 
 #endif
+
 
