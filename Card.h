@@ -1,12 +1,15 @@
 #include <iostream>
 using namespace std;
 
-class Card{
+#ifndef card_h
+#define card_h
+
+class card{
    private:
    string suit;
    string value;
     public:
-    Card(int suit_in, int value_in){
+    card(int suit_in, int value_in){
         setSuit(suit_in);
         setValue(value_in);
     }
@@ -28,8 +31,10 @@ class Card{
    string getValue(){
     return value;
    }
-   friend ostream& operator<<(ostream& os, const Card& c) {
+   friend ostream& operator<<(ostream& os, const card& c) {
         os << "Value: " << c.value << " Suit: " << c.suit << endl;
         return os;
    }
 };
+
+#endif
