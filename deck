@@ -5,7 +5,7 @@
 #include <vector>
 #include <algorithm>
 #include <random>
-#include "Card.h" // we need the seperate card header file class
+#include "card.h" // we need the seperate card header file class
 
 using namespace std;
 
