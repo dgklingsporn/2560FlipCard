@@ -45,12 +45,12 @@ deck::deck()
     node<card>* tail = nullptr;
 
     // Outer loop: Suits (1: Club, 2: Diamond, 3: Heart, 4: Spade)
-    for (int s = 1; s <= 4; s++)
+    for (int s = 0; s <= 3; s++)
     {
         // Inner loop: Values (1: Ace ... 13: King)
-        for (int v = 1; v <= 13; v++)
+        for (int v = 2; v <= 14; v++)
         {
-            card newCard(v, s); // Assumes Member 1's constructor is Card(value, suit)
+            card newCard(s, v); // Assumes Member 1's constructor is Card(value, suit)
             node<card>* newNode = new node<card>(newCard);
 
             if (firstCard == nullptr)
