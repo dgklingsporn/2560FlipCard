@@ -33,11 +33,11 @@ class card{
    string getSuit() const{ // getter method
     return suit;
    }
-   void setValue( int value_in){
-    const string values[] = {"2","3","4","5","6","7","8","9","10","Jack","Queen","King","Ace"}; // array of values
+void setValue(int value_in){
+    const string values[] = {"Ace","2","3","4","5","6","7","8","9","10","Jack","Queen","King"};
     const string* ptr = values;
-    value = *(ptr + (value_in - 2)); // move pointer to selected value, offset by two because deck doesn't have cards with value 0 or 1
-   }
+    value = *(ptr + (value_in - 1));  //offset by 1 since the deck doesn't have a value of 0
+}
 
    string getValue() const{
     return value;
