@@ -29,9 +29,10 @@ public:
     void clear();                   // delete all nodes
     int size() const;               // count cards
     bool isEmpty() const;           // empty check
+    void replace(node<card>* passedNode);
 
     node<card>* getFirst();         // return first card
-    node<card>* deal
+    node<card>* deal();
 
     friend ostream& operator<<(ostream& ostr, const deck& d);
 
@@ -49,7 +50,7 @@ deck::deck()
     for (int s = 0; s <= 3; s++)
     {
         // Inner loop: Values (1: Ace ... 13: King)
-        for (int v = 2; v <= 14; v++)
+        for (int v = 1; v <= 13; v++)
         {
             card newCard(s, v); // Assumes Member 1's constructor is Card(value, suit)
             node<card>* newNode = new node<card>(newCard);
@@ -169,11 +170,36 @@ node<card>* deck::getFirst()
 // deal out the first card
 node<card>* deck::deal()
 {
-    node<card>* dealtCard = firstCard;  
-    firstCard = firstCard->next;        
-    dealtCard->next = nullptr;          
+    if (firstCard == nullptr)
+        return nullptr;
 
-    return dealtCard; 
+    node<card>* dealtCard = firstCard;
+    firstCard = firstCard->next;
+    dealtCard->next = nullptr;
+
+    return dealtCard;
+}
+// place a passed card node on the bottom of the deck
+void deck::replace(node<card>* passedNode)
+{
+    if (passedNode == nullptr)
+        return;
+
+    passedNode->next = nullptr;
+
+    if (firstCard == nullptr)
+    {
+        firstCard = passedNode;
+        return;
+    }
+
+    node<card>* curr = firstCard;
+    while (curr->next != nullptr)
+    {
+        curr = curr->next;
+    }
+
+    curr->next = passedNode;
 }
 
 //--------------------------
@@ -191,7 +217,7 @@ ostream& operator<<(ostream& ostr, const deck& d)
         ostr << curr->nodeValue;
 
         if (curr->next != nullptr)
-            ostr << "";
+            ostr << " ";
 
         if (count % 13 == 0)
             ostr << "\n";
