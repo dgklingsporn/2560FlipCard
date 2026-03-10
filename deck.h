@@ -31,6 +31,7 @@ public:
     bool isEmpty() const;           // empty check
 
     node<card>* getFirst();         // return first card
+    node<card>* deal
 
     friend ostream& operator<<(ostream& ostr, const deck& d);
 
@@ -165,6 +166,15 @@ node<card>* deck::getFirst()
     return firstCard;
 }
 
+// deal out the first card
+node<card>* deck::deal()
+{
+    node<card>* dealtCard = firstCard;  
+    firstCard = firstCard->next;        
+    dealtCard->next = nullptr;          
+
+    return dealtCard; 
+}
 
 //--------------------------
 // print the deck
