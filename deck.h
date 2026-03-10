@@ -22,7 +22,7 @@ struct node {
 class deck
 {
 public:
-    deck();                         // constructor (someone else should have made?)
+    deck();                         // constructor 
     ~deck();                        // destructor
 
     void shuffle();                 // shuffle deck
