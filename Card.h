@@ -13,6 +13,17 @@ class card{
         setSuit(suit_in);
         setValue(value_in);
     }
+   card(const card& other){ //copy constructor
+      suit = other.suit;
+      value = other.value;
+   }
+   card& operator=(const card& other){ //overloaded assignment operator
+      if (this != &other){
+      suit = other.suit;
+      value = other.value;
+      }
+      return *this;
+   }
    void setSuit(int suit_in){
          const string suits[] = {"Club", "Diamond", "Heart", "Spade"}; // array of suits
          const string* ptr = suits; // pointer declaration
@@ -41,6 +52,7 @@ class card{
 };
 
 #endif
+
 
 
 
