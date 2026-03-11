@@ -18,8 +18,11 @@ void playFlip()
   //(1) initialize a deck with 52 cards in order
   deck d;
   deck hand;
+  hand.clear();
 
   //(2) shuffle the deck and print all cards after shuffle
+  d.shuffle();
+  d.shuffle();
   d.shuffle();
   cout << "Deck after shuffle:" << endl;
   cout << d << endl;
@@ -41,23 +44,23 @@ void playFlip()
   //(5) start the game and print the results
   cout << "Flip game started..." << endl;
 
-  int score = 0; //keeping player's score
+  int score = 0;
   int flipNumber = 1;
   bool playerWantsToPlay = true;
 
-  while (playerWantsToPlay && !hand.isEmpty()) //player wants to play and deck is not empty
+  while (playerWantsToPlay && !hand.isEmpty())
   {
     node<card>* flipped = hand.deal();
-    cout << "Flip " << flipNumber << ": " << flipped->nodeValue << endl; //flips card
-    int value = flipped->nodeValue.getValue(); //value
-    int suit = flipped->nodeValue.getSuit(); //suit
+    cout << "Flip " << flipNumber << ": " << flipped->nodeValue << endl;
 
-    if(suit == "Heart") //extra point for heart
+    string value = flipped->nodeValue.getValue();
+    string suit = flipped->nodeValue.getSuit();
+
+    if (suit == "Heart")
     {
       score += 1;
     }
 
-    //points for each card value
     if (value == "Ace")
     {
       score += 10;
@@ -68,7 +71,7 @@ void playFlip()
     }
     else if (value == "8" || value == "9" || value == "10")
     {
-      score += 0; //receives 0 points
+      score += 0;
     }
     else if (value == "7")
     {
@@ -79,25 +82,25 @@ void playFlip()
       score = 0;
     }
 
-    delete flipped; //finish flip turn
-    flipNumber++; 
+    delete flipped;
+    flipNumber++;
 
-    float playerChoice; //ask player if they want to continue to play
+    string playerChoice;
     cout << "Would you like to flip another card? (y/n): ";
     cin >> playerChoice;
 
-    if (playerChoice == 'y' || playerChoice == 'yes' || playerChoice == 'Y' || playerChoice == 'Yes')
+    if (playerChoice == "y" || playerChoice == "yes" || playerChoice == "Y" || playerChoice == "Yes")
     {
       playerWantsToPlay = true;
     }
     else
     {
-      playerWantsToPlay = false; //doesn't want to continue to play
+      playerWantsToPlay = false;
     }
   }
-  //game has finished
+
   cout << "Game Over" << endl;
-  cout << "Final Score: " << endl;
+  cout << "Final Score: " << score << endl;
 }
 
 int main()
